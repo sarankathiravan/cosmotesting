@@ -1268,32 +1268,32 @@ function renderWishlistItems() {
         '1': {
             name: 'Galaxy Explorer',
             price: '₹599',
-            image: 'images/high.png'
+            image: 'high.png'
         },
         '2': {
             name: 'Celestial Voyager',
             price: '₹599',
-            image: 'images/anime1.png'
+            image: 'anime1.png'
         },
         '3': {
             name: 'Astro Navigator',
             price: '₹599',
-            image: 'images/chiron.png'
+            image: 'chiron.png'
         },
         '4': {
             name: 'Nebula Horizon',
             price: '₹599',
-            image: 'images/mars.png'
+            image: 'mars.png'
         },
         '5': {
             name: 'Quantum Pulse',
             price: '₹599',
-            image: 'images/onepiece.png'
+            image: 'onepiece.png'
         },
         '6': {
             name: 'Orbital Dreams',
             price: '₹599',
-            image: 'images/xoxo.png'
+            image: 'xoxo.png'
         },
         '7': {
             name: 'Cosmic Ray',
@@ -1771,7 +1771,7 @@ function loadProductDetails(productId) {
             badge: 'New',
             category: 'Cosmic T-Shirt',
             description: 'Explore the depths of the Milky Way with this cosmic design that showcases the beauty of our galaxy. Made with high-quality materials for comfort and durability.',
-            images: ['images/high.png', 'images/tshirt1-alt1.jpg', 'images/tshirt1-alt2.jpg']
+            images: ['high.png', 'images/tshirt1-alt1.jpg', 'images/tshirt1-alt2.jpg']
         },
         '2': {
             name: 'Celestial Voyager',
@@ -1779,7 +1779,7 @@ function loadProductDetails(productId) {
             badge: 'New',
             category: 'Cosmic T-Shirt',
             description: 'Journey through nebulas with our signature cosmic design. The Celestial Voyager T-shirt showcases the colorful beauty of interstellar clouds where stars are born.',
-            images: ['images/anime1.png', 'images/tshirt2-alt1.jpg', 'images/tshirt2-alt2.jpg']
+            images: ['anime1.png', 'images/tshirt2-alt1.jpg', 'images/tshirt2-alt2.jpg']
         },
         '3': {
             name: 'Astro Navigator',
@@ -1787,7 +1787,7 @@ function loadProductDetails(productId) {
             badge: 'New',
             category: 'Cosmic T-Shirt',
             description: 'Find your path among the stars with this stellar design. This design captures the spirit of exploration with bold graphics and comfortable fit.',
-            images: ['images/chiron.png', 'images/tshirt3-alt1.jpg', 'images/tshirt3-alt2.jpg']
+            images: ['chiron.png', 'images/tshirt3-alt1.jpg', 'images/tshirt3-alt2.jpg']
         },
         '4': {
             name: 'Nebula Horizon',
@@ -1795,7 +1795,7 @@ function loadProductDetails(productId) {
             badge: 'New',
             category: 'Cosmic T-Shirt',
             description: 'Gaze into infinite space with our cosmic horizon design featuring vibrant colors and detailed illustrations.',
-            images: ['images/mars.png', 'images/tshirt4-alt1.jpg', 'images/tshirt4-alt2.jpg']
+            images: ['mars.png', 'images/tshirt4-alt1.jpg', 'images/tshirt4-alt2.jpg']
         },
         '5': {
             name: 'Quantum Pulse',
@@ -1803,7 +1803,7 @@ function loadProductDetails(productId) {
             badge: 'New',
             category: 'Cosmic T-Shirt',
             description: 'Vibrant cosmic energy patterns that resonate with your style on comfortable fabric.',
-            images: ['images/onepiece.png', 'images/tshirt5-alt1.jpg', 'images/tshirt5-alt2.jpg']
+            images: ['onepiece.png', 'images/tshirt5-alt1.jpg', 'images/tshirt5-alt2.jpg']
         },
         '6': {
             name: 'Orbital Dreams',
@@ -1811,7 +1811,7 @@ function loadProductDetails(productId) {
             badge: 'New',
             category: 'Cosmic T-Shirt',
             description: 'Orbit the realm of dreams with this cosmic design showcasing the different phases of celestial beauty in striking detail on quality fabric.',
-            images: ['images/xoxo.png', 'images/tshirt6-alt1.jpg', 'images/tshirt6-alt2.jpg']
+            images: ['xoxo.png', 'images/tshirt6-alt1.jpg', 'images/tshirt6-alt2.jpg']
         },
         '7': {
             name: 'Cosmic Ray',
@@ -1907,7 +1907,7 @@ function loadRelatedProducts(currentProductId) {
             name: 'Galaxy Explorer',
             price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'images/high.png',
+            image: 'high.png',
             description: 'Explore the depths of the Milky Way with this cosmic design'
         },
         {
@@ -1915,7 +1915,7 @@ function loadRelatedProducts(currentProductId) {
             name: 'Celestial Voyager',
             price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'images/anime1.png',
+            image: 'anime1.png',
             description: 'Journey through nebulas with our signature cosmic design'
         },
         {
@@ -1923,7 +1923,7 @@ function loadRelatedProducts(currentProductId) {
             name: 'Astro Navigator',
             price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'images/chiron.png',
+            image: 'chiron.png',
             description: 'Find your path among the stars with this stellar design'
         },
         {
@@ -1931,7 +1931,7 @@ function loadRelatedProducts(currentProductId) {
             name: 'Nebula Horizon',
             price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'images/mars.png',
+            image: 'mars.png',
             description: 'Gaze into infinite space with our cosmic horizon design'
         },
         {
@@ -1939,7 +1939,7 @@ function loadRelatedProducts(currentProductId) {
             name: 'Quantum Pulse',
             price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'images/onepiece.png',
+            image: 'onepiece.png',
             description: 'Vibrant cosmic energy patterns that resonate with your style'
         },
         {
@@ -1947,7 +1947,7 @@ function loadRelatedProducts(currentProductId) {
             name: 'Orbital Dreams',
             price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'images/xoxo.png',
+            image: 'xoxo.png',
             description: 'Orbit the realm of dreams with this cosmic design'
         },
         {
@@ -2113,12 +2113,12 @@ function updateWishlistDropdown() {
 function getProductInfo(productId) {
     // Sample product data - replace with actual product data retrieval
     const products = {
-        '1': { name: 'Galaxy Explorer', price: '₹599', image: 'images/high.png' },
-        '2': { name: 'Celestial Voyager', price: '₹599', image: 'images/anime1.png' },
-        '3': { name: 'Astro Navigator', price: '₹599', image: 'images/chiron.png' },
-        '4': { name: 'Nebula Horizon', price: '₹599', image: 'images/mars.png' },
-        '5': { name: 'Quantum Pulse', price: '₹599', image: 'images/onepiece.png' },
-        '6': { name: 'Orbital Dreams', price: '₹599', image: 'images/xoxo.png' },
+        '1': { name: 'Galaxy Explorer', price: '₹599', image: 'high.png' },
+        '2': { name: 'Celestial Voyager', price: '₹599', image: 'anime1.png' },
+        '3': { name: 'Astro Navigator', price: '₹599', image: 'chiron.png' },
+        '4': { name: 'Nebula Horizon', price: '₹599', image: 'mars.png' },
+        '5': { name: 'Quantum Pulse', price: '₹599', image: 'onepiece.png' },
+        '6': { name: 'Orbital Dreams', price: '₹599', image: 'xoxo.png' },
         '7': { name: 'Cosmic Ray', price: '₹599', image: 'images/tshirt7.jpg' },
         '8': { name: 'Dark Matter', price: '₹599', image: 'images/tshirt8.jpg' }
     };
