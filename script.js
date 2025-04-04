@@ -567,91 +567,113 @@ window.COSMO = window.COSMO || {};
 COSMO.mobileNavInitialized = false;
 COSMO.mobileMenuOpen = false;
 
-// Replace the entire mobile navigation system with a simpler implementation
-function initMobileNav() {
+// Completely revamped mobile navigation function
+function initMobileNav(forceInit = false) {
+    // Get the required elements
     const mobileToggle = document.querySelector('.mobile-nav-toggle');
     const navLinks = document.querySelector('.nav-links');
     
+    // Exit if elements don't exist
     if (!mobileToggle || !navLinks) return;
     
-    // Clear any existing event listeners
-    const newToggle = mobileToggle.cloneNode(true);
-    mobileToggle.parentNode.replaceChild(newToggle, mobileToggle);
+    // Create clean handlers without event listener buildup
+    mobileToggle.innerHTML = `
+        <span></span>
+        <span></span>
+        <span></span>
+    `;
     
-    // Add staggered animation indices to nav items
-    const navItems = navLinks.querySelectorAll('li');
-    navItems.forEach((item, index) => {
-        item.style.setProperty('--i', index);
-    });
-    
-    // Direct method for opening menu
-    function openMobileMenu() {
-        newToggle.classList.add('active');
-        navLinks.style.display = 'flex';
-        navLinks.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    
-    // Direct method for closing menu
-    function closeMobileMenu() {
-        newToggle.classList.remove('active');
+    // Direct functions to handle menu state
+    function forceCloseMenu() {
+        mobileToggle.classList.remove('active');
         navLinks.classList.remove('active');
-        
-        // Wait for animation to complete before hiding
-        setTimeout(() => {
-            if (!navLinks.classList.contains('active')) {
-                navLinks.style.display = '';
-            }
-        }, 300);
-        
+        navLinks.style.display = 'none';
         document.body.style.overflow = '';
     }
     
-    // Toggle handler with explicit state checking
-    newToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        if (this.classList.contains('active')) {
-            closeMobileMenu();
-        } else {
-            openMobileMenu();
+    function toggleMenu(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
         }
-    });
+        
+        if (navLinks.classList.contains('active')) {
+            // Close menu
+            mobileToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            setTimeout(() => {
+                if (!navLinks.classList.contains('active')) {
+                    navLinks.style.display = 'none';
+                }
+            }, 300);
+            document.body.style.overflow = '';
+        } else {
+            // Open menu
+            mobileToggle.classList.add('active');
+            navLinks.style.display = 'flex';
+            // Small delay to ensure display change takes effect before adding active class
+            setTimeout(() => {
+                navLinks.classList.add('active');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+    }
     
-    // Close menu when clicking links
+    // Clean up existing handler by replacing with new element and adding fresh handler
+    const newToggle = mobileToggle.cloneNode(true);
+    mobileToggle.parentNode.replaceChild(newToggle, mobileToggle);
+    newToggle.addEventListener('click', toggleMenu);
+    
+    // Close menu when clicking navigation links
     navLinks.querySelectorAll('a').forEach(link => {
-        // Don't close for wishlist button on main page
+        // Skip wishlist button on main page to avoid closing menu when just viewing wishlist
         if (link.id === 'wishlistBtn' && !document.querySelector('.product-page')) {
             return;
         }
         
-        link.addEventListener('click', function() {
-            closeMobileMenu();
-        });
+        link.addEventListener('click', forceCloseMenu);
     });
     
-    // Close when clicking outside
+    // Close menu when clicking outside
     document.addEventListener('click', function(e) {
-        if (newToggle.classList.contains('active') && 
+        if (navLinks.classList.contains('active') && 
             !navLinks.contains(e.target) && 
             !newToggle.contains(e.target)) {
-            closeMobileMenu();
+            forceCloseMenu();
         }
     });
     
-    // Close with escape key
+    // Close with Escape key
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && newToggle.classList.contains('active')) {
-            closeMobileMenu();
+        if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+            forceCloseMenu();
         }
     });
+    
+    // Handle resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 992) {
+            // Reset to default styles for desktop
+            forceCloseMenu();
+            navLinks.style.display = '';
+        }
+    });
+    
+    // Ensure menu starts closed on all pages
+    forceCloseMenu();
+    
+    // For product pages, handle special case on load
+    if (document.querySelector('.product-page') || forceInit) {
+        window.addEventListener('load', function() {
+            forceCloseMenu();
+        });
+    }
 }
 
-// Simplified version of the product page mobile nav fix
+// Fix hamburger menu error on product page
 function fixProductPageMobileNav() {
-    // We'll just reinitialize the mobile nav on product pages
-    initMobileNav();
+    // Simplify by directly targeting both pages with same initialization
+    initMobileNav(true); // Force reinitialize for product pages
 }
 
 // ======== Product Carousel ========

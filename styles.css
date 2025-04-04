@@ -5186,3 +5186,128 @@ section {
     margin: 0 auto;
     width: 100%;
 }
+
+/* Fix mobile navigation on product page */
+.product-page .mobile-nav-toggle {
+    display: none;
+    z-index: 1000;
+}
+
+@media (max-width: 992px) {
+    .product-page .mobile-nav-toggle {
+        display: flex;
+        position: relative;
+        z-index: 1000;
+    }
+    
+    .product-page .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
+        background: rgba(5, 10, 24, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        z-index: 999;
+        padding: 6rem 2rem;
+    }
+}
+
+/* Reduce font size of sub-content in product page */
+.product-page .product-description {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.product-page .meta-item {
+    font-size: 1.4rem;
+}
+
+.product-page .features-list li {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.product-page .product-details p {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.product-page .spec-item {
+    font-size: 1.4rem;
+}
+
+.product-page .care-item {
+    font-size: 1.4rem;
+}
+
+/* Reduce tab button font size */
+.tab-btn {
+    font-size: 1.4rem;
+    padding: 1rem 1.5rem;
+}
+
+/* Smaller headings in product details */
+.content-text h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.product-page .section-subtitle {
+    font-size: 1.5rem;
+}
+
+/* Adjust breadcrumbs size */
+.breadcrumbs {
+    font-size: 1.3rem;
+    padding: 1rem 0;
+}
+
+/* Further reduce sizes on mobile */
+@media (max-width: 768px) {
+    .product-page .product-title {
+        font-size: 2.2rem;
+    }
+    
+    .product-page .product-description {
+        font-size: 1.4rem;
+    }
+    
+    .product-page .product-price {
+        font-size: 1.8rem;
+    }
+    
+    .product-page .meta-item,
+    .product-page .features-list li,
+    .product-page .product-details p,
+    .product-page .spec-item,
+    .product-page .care-item {
+        font-size: 1.3rem;
+    }
+    
+    .tab-btn {
+        font-size: 1.3rem;
+        padding: 0.8rem 1.2rem;
+    }
+    
+    .content-text h3 {
+        font-size: 1.6rem;
+    }
+    
+    .breadcrumbs {
+        font-size: 1.2rem;
+    }
+    
+    /* Ensure tab buttons display properly on small screens */
+    .tabs-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
