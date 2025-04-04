@@ -567,113 +567,103 @@ window.COSMO = window.COSMO || {};
 COSMO.mobileNavInitialized = false;
 COSMO.mobileMenuOpen = false;
 
-// Completely revamped mobile navigation function
+// Updated mobile navigation to match new CSS design
 function initMobileNav(forceInit = false) {
-    // Get the required elements
     const mobileToggle = document.querySelector('.mobile-nav-toggle');
     const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-links li');
     
-    // Exit if elements don't exist
     if (!mobileToggle || !navLinks) return;
     
-    // Create clean handlers without event listener buildup
-    mobileToggle.innerHTML = `
-        <span></span>
-        <span></span>
-        <span></span>
-    `;
+    // Set animation index attributes for staggered animation
+    navItems.forEach((item, index) => {
+        item.style.setProperty('--item-index', index);
+    });
     
-    // Direct functions to handle menu state
-    function forceCloseMenu() {
-        mobileToggle.classList.remove('active');
+    // Clear any existing event listeners
+    const newToggle = mobileToggle.cloneNode(true);
+    mobileToggle.parentNode.replaceChild(newToggle, mobileToggle);
+    
+    // Ensure mobile navigation is properly initialized
+    function openMobileMenu() {
+        newToggle.classList.add('active');
+        navLinks.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Reset animations
+        navItems.forEach(item => {
+            item.style.animation = 'none';
+            item.offsetHeight; // Force reflow
+            item.style.animation = '';
+        });
+    }
+    
+    function closeMobileMenu() {
+        newToggle.classList.remove('active');
         navLinks.classList.remove('active');
-        navLinks.style.display = 'none';
         document.body.style.overflow = '';
     }
     
-    function toggleMenu(e) {
-        if (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
+    // Toggle handler
+    newToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
         
-        if (navLinks.classList.contains('active')) {
-            // Close menu
-            mobileToggle.classList.remove('active');
-            navLinks.classList.remove('active');
-            setTimeout(() => {
-                if (!navLinks.classList.contains('active')) {
-                    navLinks.style.display = 'none';
-                }
-            }, 300);
-            document.body.style.overflow = '';
+        if (this.classList.contains('active')) {
+            closeMobileMenu();
         } else {
-            // Open menu
-            mobileToggle.classList.add('active');
-            navLinks.style.display = 'flex';
-            // Small delay to ensure display change takes effect before adding active class
-            setTimeout(() => {
-                navLinks.classList.add('active');
-            }, 10);
-            document.body.style.overflow = 'hidden';
+            openMobileMenu();
         }
-    }
-    
-    // Clean up existing handler by replacing with new element and adding fresh handler
-    const newToggle = mobileToggle.cloneNode(true);
-    mobileToggle.parentNode.replaceChild(newToggle, mobileToggle);
-    newToggle.addEventListener('click', toggleMenu);
+    });
     
     // Close menu when clicking navigation links
     navLinks.querySelectorAll('a').forEach(link => {
-        // Skip wishlist button on main page to avoid closing menu when just viewing wishlist
+        // Don't close for wishlist button on main page
         if (link.id === 'wishlistBtn' && !document.querySelector('.product-page')) {
             return;
         }
         
-        link.addEventListener('click', forceCloseMenu);
+        link.addEventListener('click', closeMobileMenu);
     });
     
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
-        if (navLinks.classList.contains('active') && 
+        if (newToggle.classList.contains('active') && 
             !navLinks.contains(e.target) && 
             !newToggle.contains(e.target)) {
-            forceCloseMenu();
+            closeMobileMenu();
         }
     });
     
     // Close with Escape key
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-            forceCloseMenu();
+        if (e.key === 'Escape' && newToggle.classList.contains('active')) {
+            closeMobileMenu();
         }
     });
     
-    // Handle resize
+    // Handle resize events
     window.addEventListener('resize', function() {
         if (window.innerWidth > 992) {
-            // Reset to default styles for desktop
-            forceCloseMenu();
-            navLinks.style.display = '';
+            closeMobileMenu();
+            navLinks.style.transform = ''; // Reset any inline transform
         }
     });
     
-    // Ensure menu starts closed on all pages
-    forceCloseMenu();
+    // Ensure menu starts closed on page load
+    closeMobileMenu();
     
-    // For product pages, handle special case on load
+    // Special handling for product page
     if (document.querySelector('.product-page') || forceInit) {
         window.addEventListener('load', function() {
-            forceCloseMenu();
+            closeMobileMenu();
         });
     }
 }
 
-// Fix hamburger menu error on product page
+// Fix for product page mobile navigation
 function fixProductPageMobileNav() {
-    // Simplify by directly targeting both pages with same initialization
-    initMobileNav(true); // Force reinitialize for product pages
+    initMobileNav(true);
 }
 
 // ======== Product Carousel ========
@@ -760,7 +750,7 @@ function initModals() {
         }
     }
     
-    // Add event listeners
+    // Add event listeners for modal opening
     if (allProductsBtn) {
         allProductsBtn.addEventListener('click', () => {
             const modal = document.getElementById('allProductsModal');
@@ -768,13 +758,21 @@ function initModals() {
             
             // Initialize wishlist in this modal
             initAllProductsWishlist();
+            
+            // For mobile: disable body scroll
+            if (window.innerWidth <= 768) {
+                document.body.style.overflow = 'hidden';
+                // Force focus into the modal for better mobile accessibility
+                setTimeout(() => {
+                    modal.querySelector('.products-grid').focus();
+                }, 300);
+            }
         });
     }
     
     if (customizeBtn) {
         customizeBtn.addEventListener('click', () => {
-            const modal = document.getElementById('customizeModal');
-            openModal(modal);
+            window.open('https://forms.gle/wR6aCRwGzPGi12qM6', '_blank');
         });
     }
     
@@ -790,15 +788,23 @@ function initModals() {
                 populateWishlistModal();
                 
                 openModal(modal);
+                
+                // For mobile: disable body scroll
+                if (window.innerWidth <= 768) {
+                    document.body.style.overflow = 'hidden';
+                }
             }
         });
     }
     
-    // Close buttons
+    // Close buttons with enhanced mobile handling
     closeButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const modal = btn.closest('.modal');
             closeModal(modal);
+            
+            // Re-enable body scroll
+            document.body.style.overflow = '';
         });
     });
     
@@ -807,6 +813,8 @@ function initModals() {
         modal.addEventListener('click', (e) => {
             if (e.target === modal) {
                 closeModal(modal);
+                // Re-enable body scroll
+                document.body.style.overflow = '';
             }
         });
     });
@@ -817,6 +825,8 @@ function initModals() {
             modals.forEach(modal => {
                 if (modal.classList.contains('show')) {
                     closeModal(modal);
+                    // Re-enable body scroll
+                    document.body.style.overflow = '';
                 }
             });
         }
@@ -824,6 +834,98 @@ function initModals() {
     
     // Add click handlers for products in the all products modal
     setupAllProductsModalLinks();
+    
+    // Handle modal scrolling for mobile
+    setupMobileModalScrolling();
+}
+
+// Setup dedicated handling for mobile modal scrolling
+function setupMobileModalScrolling() {
+    const productModals = document.querySelectorAll('.products-modal');
+    
+    productModals.forEach(modal => {
+        if (window.innerWidth <= 768) {
+            const productsGrid = modal.querySelector('.products-grid');
+            if (productsGrid) {
+                // Make sure the products grid gets proper focus for scrolling
+                productsGrid.setAttribute('tabindex', '0');
+                
+                // Add touch event handling for better mobile scrolling
+                let touchStartY;
+                
+                productsGrid.addEventListener('touchstart', (e) => {
+                    touchStartY = e.touches[0].clientY;
+                }, { passive: true });
+                
+                productsGrid.addEventListener('touchmove', (e) => {
+                    const touchY = e.touches[0].clientY;
+                    const scrollTop = productsGrid.scrollTop;
+                    const scrollHeight = productsGrid.scrollHeight;
+                    const clientHeight = productsGrid.clientHeight;
+                    
+                    // Prevent parent modal from scrolling when we're at the top or bottom
+                    // of the products grid and trying to scroll further
+                    if ((scrollTop === 0 && touchY > touchStartY) || 
+                        (scrollTop + clientHeight >= scrollHeight && touchY < touchStartY)) {
+                        e.preventDefault();
+                    }
+                });
+            }
+        }
+    });
+}
+
+// Improved modal opening animation
+function openModal(modal) {
+    if (!modal) return;
+    
+    // Reset modal scrolling position
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) {
+        modalContent.scrollTop = 0;
+    }
+    
+    // Prepare animation
+    modal.style.display = 'flex';
+    
+    // Trigger animation
+    setTimeout(() => {
+        modal.classList.add('show');
+    }, 10);
+    
+    // Special handling for the All Products modal
+    if (modal.id === 'allProductsModal') {
+        // Set a flag that this modal is open for potential page refreshes/returns
+        sessionStorage.setItem('allProductsModalOpen', 'true');
+        
+        // For mobile, add the proper scroll behavior
+        if (window.innerWidth <= 768) {
+            const productsGrid = modal.querySelector('.products-grid');
+            if (productsGrid) {
+                productsGrid.scrollTop = 0;
+            }
+        }
+    }
+}
+
+// Improved modal closing animation
+function closeModal(modal) {
+    if (!modal) return;
+    
+    modal.classList.remove('show');
+    
+    // Wait for the animation to complete before hiding
+    setTimeout(() => {
+        modal.style.display = 'none';
+        
+        // Clear any modal state flags
+        if (modal.id === 'allProductsModal') {
+            sessionStorage.removeItem('allProductsModalOpen');
+        }
+    }, 300);
+    
+    // Re-enable body scroll
+    document.body.style.overflow = '';
 }
 
 // Setup All Products Modal Links
@@ -878,40 +980,6 @@ function clearNavigationInterference() {
                 e.stopPropagation();
             }
         }, true); // Use capture phase to run before other handlers
-    }
-}
-
-function openModal(modal) {
-    if (modal) {
-        // Show modal
-        modal.style.display = 'flex';
-        
-        // Force reflow
-        void modal.offsetWidth;
-        
-        // Add show class for animation
-        modal.classList.add('show');
-        
-        // Lock body scroll
-        document.body.style.overflow = 'hidden';
-    }
-}
-
-function closeModal(modal) {
-    if (modal) {
-        // Remove show class to start animation
-        modal.classList.remove('show');
-        
-        // Hide after animation completes
-        setTimeout(() => {
-            modal.style.display = 'none';
-            
-            // Restore body scroll if no other modals are open
-            const openModals = document.querySelectorAll('.modal.show');
-            if (openModals.length === 0) {
-                document.body.style.overflow = '';
-            }
-        }, 500);
     }
 }
 
@@ -1199,42 +1267,42 @@ function renderWishlistItems() {
     const products = {
         '1': {
             name: 'Galaxy Explorer',
-            price: '$29.99',
-            image: 'images/tshirt1.jpg'
+            price: '₹599',
+            image: 'images/high.png'
         },
         '2': {
-            name: 'Nebula Dream',
-            price: '$32.99',
-            image: 'images/tshirt2.jpg'
+            name: 'Celestial Voyager',
+            price: '₹599',
+            image: 'images/anime1.png'
         },
         '3': {
-            name: 'Space Explorer',
-            price: '$34.99',
-            image: 'images/tshirt3.jpg'
+            name: 'Astro Navigator',
+            price: '₹599',
+            image: 'images/chiron.png'
         },
         '4': {
-            name: 'Planetary Voyage',
-            price: '$28.99',
-            image: 'images/tshirt4.jpg'
+            name: 'Nebula Horizon',
+            price: '₹599',
+            image: 'images/mars.png'
         },
         '5': {
-            name: 'Astral Drift',
-            price: '$31.99',
-            image: 'images/tshirt5.jpg'
+            name: 'Quantum Pulse',
+            price: '₹599',
+            image: 'images/onepiece.png'
         },
         '6': {
-            name: 'Lunar Phase',
-            price: '$27.99',
-            image: 'images/tshirt6.jpg'
+            name: 'Orbital Dreams',
+            price: '₹599',
+            image: 'images/xoxo.png'
         },
         '7': {
             name: 'Cosmic Ray',
-            price: '$29.99',
+            price: '₹599',
             image: 'images/tshirt7.jpg'
         },
         '8': {
             name: 'Dark Matter',
-            price: '$33.99',
+            price: '₹599',
             image: 'images/tshirt8.jpg'
         }
     };
@@ -1699,55 +1767,55 @@ function loadProductDetails(productId) {
     const products = {
         '1': {
             name: 'Galaxy Explorer',
-            price: '$29.99',
+            price: '₹599',
             badge: 'New',
             category: 'Cosmic T-Shirt',
             description: 'Explore the depths of the Milky Way with this cosmic design that showcases the beauty of our galaxy. Made with high-quality materials for comfort and durability.',
-            images: ['images/tshirt1.jpg', 'images/tshirt1-alt1.jpg', 'images/tshirt1-alt2.jpg']
+            images: ['images/high.png', 'images/tshirt1-alt1.jpg', 'images/tshirt1-alt2.jpg']
         },
         '2': {
-            name: 'Nebula Dream',
-            price: '$32.99',
+            name: 'Celestial Voyager',
+            price: '₹599',
             badge: 'New',
             category: 'Cosmic T-Shirt',
-            description: 'Vibrant nebula patterns crafted from quality materials. The Nebula Dream T-shirt showcases the colorful beauty of interstellar clouds where stars are born.',
-            images: ['images/tshirt2.jpg', 'images/tshirt2-alt1.jpg', 'images/tshirt2-alt2.jpg']
+            description: 'Journey through nebulas with our signature cosmic design. The Celestial Voyager T-shirt showcases the colorful beauty of interstellar clouds where stars are born.',
+            images: ['images/anime1.png', 'images/tshirt2-alt1.jpg', 'images/tshirt2-alt2.jpg']
         },
         '3': {
-            name: 'Space Explorer',
-            price: '$34.99',
+            name: 'Astro Navigator',
+            price: '₹599',
             badge: 'New',
             category: 'Cosmic T-Shirt',
-            description: 'For the brave souls seeking cosmic adventures. This design captures the spirit of exploration with bold graphics and comfortable fit.',
-            images: ['images/tshirt3.jpg', 'images/tshirt3-alt1.jpg', 'images/tshirt3-alt2.jpg']
+            description: 'Find your path among the stars with this stellar design. This design captures the spirit of exploration with bold graphics and comfortable fit.',
+            images: ['images/chiron.png', 'images/tshirt3-alt1.jpg', 'images/tshirt3-alt2.jpg']
         },
         '4': {
-            name: 'Planetary Voyage',
-            price: '$28.99',
+            name: 'Nebula Horizon',
+            price: '₹599',
             badge: 'New',
             category: 'Cosmic T-Shirt',
-            description: 'Travel through our solar system with this unique design featuring all planets in our solar system with vibrant colors and detailed illustrations.',
-            images: ['images/tshirt4.jpg', 'images/tshirt4-alt1.jpg', 'images/tshirt4-alt2.jpg']
+            description: 'Gaze into infinite space with our cosmic horizon design featuring vibrant colors and detailed illustrations.',
+            images: ['images/mars.png', 'images/tshirt4-alt1.jpg', 'images/tshirt4-alt2.jpg']
         },
         '5': {
-            name: 'Astral Drift',
-            price: '$31.99',
+            name: 'Quantum Pulse',
+            price: '₹599',
             badge: 'New',
             category: 'Cosmic T-Shirt',
-            description: 'Navigate the cosmos with this star-inspired design that maps constellations across a deep space background on comfortable fabric.',
-            images: ['images/tshirt5.jpg', 'images/tshirt5-alt1.jpg', 'images/tshirt5-alt2.jpg']
+            description: 'Vibrant cosmic energy patterns that resonate with your style on comfortable fabric.',
+            images: ['images/onepiece.png', 'images/tshirt5-alt1.jpg', 'images/tshirt5-alt2.jpg']
         },
         '6': {
-            name: 'Lunar Phase',
-            price: '$27.99',
+            name: 'Orbital Dreams',
+            price: '₹599',
             badge: 'New',
             category: 'Cosmic T-Shirt',
-            description: 'Celebrate the beauty of lunar cycles with this elegant design showcasing the different phases of the moon in striking detail on quality fabric.',
-            images: ['images/tshirt6.jpg', 'images/tshirt6-alt1.jpg', 'images/tshirt6-alt2.jpg']
+            description: 'Orbit the realm of dreams with this cosmic design showcasing the different phases of celestial beauty in striking detail on quality fabric.',
+            images: ['images/xoxo.png', 'images/tshirt6-alt1.jpg', 'images/tshirt6-alt2.jpg']
         },
         '7': {
             name: 'Cosmic Ray',
-            price: '$29.99',
+            price: '₹599',
             badge: 'New',
             category: 'Cosmic T-Shirt',
             description: 'Inspired by the high-energy particles that traverse space, Cosmic Ray features dynamic light streaks on a black tee that seems to pulse with energy.',
@@ -1755,7 +1823,7 @@ function loadProductDetails(productId) {
         },
         '8': {
             name: 'Dark Matter',
-            price: '$33.99',
+            price: '₹599',
             badge: 'New',
             category: 'Cosmic T-Shirt',
             description: 'Embrace the unknown with this enigmatic cosmic design that represents the mysterious dark matter that makes up most of our universe.',
@@ -1837,55 +1905,55 @@ function loadRelatedProducts(currentProductId) {
         {
             id: '1',
             name: 'Galaxy Explorer',
-            price: '$29.99',
+            price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'images/tshirt1.jpg',
+            image: 'images/high.png',
             description: 'Explore the depths of the Milky Way with this cosmic design'
         },
         {
             id: '2',
-            name: 'Nebula Dream',
-            price: '$32.99',
+            name: 'Celestial Voyager',
+            price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'images/tshirt2.jpg',
-            description: 'Vibrant nebula patterns crafted from quality materials'
+            image: 'images/anime1.png',
+            description: 'Journey through nebulas with our signature cosmic design'
         },
         {
             id: '3',
-            name: 'Space Explorer',
-            price: '$34.99',
+            name: 'Astro Navigator',
+            price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'images/tshirt3.jpg',
-            description: 'For the brave souls seeking cosmic adventures'
+            image: 'images/chiron.png',
+            description: 'Find your path among the stars with this stellar design'
         },
         {
             id: '4',
-            name: 'Planetary Voyage',
-            price: '$28.99',
+            name: 'Nebula Horizon',
+            price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'images/tshirt4.jpg',
-            description: 'Travel through our solar system with this unique design'
+            image: 'images/mars.png',
+            description: 'Gaze into infinite space with our cosmic horizon design'
         },
         {
             id: '5',
-            name: 'Astral Drift',
-            price: '$31.99',
+            name: 'Quantum Pulse',
+            price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'images/tshirt5.jpg',
-            description: 'Navigate the cosmos with this star-inspired design'
+            image: 'images/onepiece.png',
+            description: 'Vibrant cosmic energy patterns that resonate with your style'
         },
         {
             id: '6',
-            name: 'Lunar Phase',
-            price: '$27.99',
+            name: 'Orbital Dreams',
+            price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'images/tshirt6.jpg',
-            description: 'Celebrate the beauty of lunar cycles with this elegant design'
+            image: 'images/xoxo.png',
+            description: 'Orbit the realm of dreams with this cosmic design'
         },
         {
             id: '7',
             name: 'Cosmic Ray',
-            price: '$29.99',
+            price: '₹599',
             category: 'Cosmic T-Shirt',
             image: 'images/tshirt7.jpg',
             description: 'Capture the power of cosmic energy with this vibrant design'
@@ -1893,7 +1961,7 @@ function loadRelatedProducts(currentProductId) {
         {
             id: '8',
             name: 'Dark Matter',
-            price: '$33.99',
+            price: '₹599',
             category: 'Cosmic T-Shirt',
             image: 'images/tshirt8.jpg',
             description: 'Embrace the unknown with this enigmatic cosmic design'
@@ -2045,14 +2113,14 @@ function updateWishlistDropdown() {
 function getProductInfo(productId) {
     // Sample product data - replace with actual product data retrieval
     const products = {
-        '1': { name: 'Galaxy Explorer', price: '$29.99', image: 'images/tshirt1.jpg' },
-        '2': { name: 'Nebula Dream', price: '$32.99', image: 'images/tshirt2.jpg' },
-        '3': { name: 'Space Explorer', price: '$34.99', image: 'images/tshirt3.jpg' },
-        '4': { name: 'Planetary Voyage', price: '$28.99', image: 'images/tshirt4.jpg' },
-        '5': { name: 'Astral Drift', price: '$31.99', image: 'images/tshirt5.jpg' },
-        '6': { name: 'Lunar Phase', price: '$27.99', image: 'images/tshirt6.jpg' },
-        '7': { name: 'Cosmic Ray', price: '$29.99', image: 'images/tshirt7.jpg' },
-        '8': { name: 'Dark Matter', price: '$33.99', image: 'images/tshirt8.jpg' }
+        '1': { name: 'Galaxy Explorer', price: '₹599', image: 'images/high.png' },
+        '2': { name: 'Celestial Voyager', price: '₹599', image: 'images/anime1.png' },
+        '3': { name: 'Astro Navigator', price: '₹599', image: 'images/chiron.png' },
+        '4': { name: 'Nebula Horizon', price: '₹599', image: 'images/mars.png' },
+        '5': { name: 'Quantum Pulse', price: '₹599', image: 'images/onepiece.png' },
+        '6': { name: 'Orbital Dreams', price: '₹599', image: 'images/xoxo.png' },
+        '7': { name: 'Cosmic Ray', price: '₹599', image: 'images/tshirt7.jpg' },
+        '8': { name: 'Dark Matter', price: '₹599', image: 'images/tshirt8.jpg' }
     };
     
     return products[productId];
