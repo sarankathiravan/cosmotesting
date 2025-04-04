@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COSMO - Premium Cosmic T-Shirts</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.1/dist/locomotive-scroll.min.css">
+</head>
+<body data-scroll-container>
+    <div class="loader">
+        <div class="loader-inner">
+            <h2>COSMO</h2>
+            <div class="loader-progress-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cosmos-background">
+        <div class="stars-container"></div>
+        <div class="planets-container">
+            <div class="planet planet-1"></div>
+            <div class="planet planet-2"></div>
+            <div class="planet planet-3"></div>
+            <div class="comet"></div>
+        </div>
+        <div class="shooting-stars"></div>
+    </div>
+    
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <svg viewBox="0 0 200 50" class="logo-svg">
+                    <text x="10" y="35" fill="url(#logo-gradient)">COSMO</text>
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#7d42f4" />
+                            <stop offset="100%" stop-color="#e527b2" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home" data-scroll-to>Home</a></li>
+                    <li><a href="#collection" data-scroll-to>Collection</a></li>
+                    <li><a href="#customize" data-scroll-to>Customize</a></li>
+                    <li><a href="#about" data-scroll-to>About</a></li>
+                    <li><a href="#contact" data-scroll-to>Contact</a></li>
+                    <li><a href="#" id="wishlistBtn"><i class="fas fa-heart"></i> Wishlist <span class="wishlist-count">0</span></a></li>
+                </ul>
+            </nav>
+            <div class="mobile-nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero-section" data-scroll-section>
+            <div class="hero-content" data-scroll data-scroll-speed="2">
+                <div class="hero-text">
+                    <h1 class="glitch-text" data-text="COSMIC T-SHIRTS">COSMIC T-SHIRTS</h1>
+                    <p class="hero-subtitle">Wear the universe. <span class="highlight">Be the cosmos.</span></p>
+                </div>
+                <div class="hero-cta">
+                    <button class="cosmic-btn primary-btn" id="exploreBtn">
+                        <span class="btn-text">EXPLORE COLLECTION</span>
+                        <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                    </button>
+                </div>
+                <div class="scroll-indicator">
+                    <div class="mouse">
+                        <div class="wheel"></div>
+                    </div>
+                    <div class="arrow">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-orbits">
+                <div class="orbit orbit-1"></div>
+                <div class="orbit orbit-2"></div>
+                <div class="orbit orbit-3"></div>
+            </div>
+            <div class="hero-video-container">
+                <video autoplay muted loop playsinline class="hero-video">
+                    <source src="images/space-bg.mp4" type="video/mp4">
+                </video>
+            </div>
+        </section>
+
+        <section id="collection" class="collection-section" data-scroll-section>
+            <div class="collection-cosmos">
+                <div class="nebula-overlay"></div>
+                <div class="collection-stars"></div>
+                <div class="collection-meteor"></div>
+            </div>
+            
+            <div class="collection-container">
+                <div class="section-header collection-header" data-scroll data-scroll-speed="1">
+                    <div class="section-icon"><i class="fas fa-tshirt"></i></div>
+                    <h2 class="section-title">Our Cosmic Collection</h2>
+                    <div class="section-subtitle">Discover the universe through our premium designs</div>
+                </div>
+                
+                <div class="products-carousel" data-scroll data-scroll-speed="1.2">
+                    <div class="slide-controls">
+                        <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                        <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="products-wrapper">
+                        <div class="product-card featured-card" data-product-id="1">
+                            <div class="product-badge">FEATURED</div>
+                            <div class="product-image">
+                                <div class="product-image-inner">
+                                    <img src="images/tshirt1.jpg" alt="Galaxy Explorer T-Shirt">
+                                </div>
+                                <div class="product-hover-overlay">
+                                    <a href="product.html?id=1" class="view-product-btn">VIEW PRODUCT</a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Cosmic T-Shirt</div>
+                                <h3 class="product-title">Galaxy Explorer</h3>
+                                <div class="product-description">Explore the depths of the Milky Way with this cosmic design</div>
+                                <div class="product-bottom">
+                                    <p class="product-price">$29.99</p>
+                                    <button class="wishlist-btn" data-product-id="1"><i class="far fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card" data-product-id="2">
+                            <div class="product-image">
+                                <div class="product-image-inner">
+                                    <img src="images/tshirt2.jpg" alt="Nebula Dream T-Shirt">
+                                </div>
+                                <div class="product-hover-overlay">
+                                    <a href="product.html?id=2" class="view-product-btn">VIEW PRODUCT</a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Cosmic T-Shirt</div>
+                                <h3 class="product-title">Nebula Dream</h3>
+                                <div class="product-description">Vibrant nebula patterns crafted from quality materials</div>
+                                <div class="product-bottom">
+                                    <p class="product-price">$32.99</p>
+                                    <button class="wishlist-btn" data-product-id="2"><i class="far fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card" data-product-id="3">
+                            <div class="product-badge">NEW</div>
+                            <div class="product-image">
+                                <div class="product-image-inner">
+                                    <img src="images/tshirt3.jpg" alt="Space Explorer T-Shirt">
+                                </div>
+                                <div class="product-hover-overlay">
+                                    <a href="product.html?id=3" class="view-product-btn">VIEW PRODUCT</a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Cosmic T-Shirt</div>
+                                <h3 class="product-title">Space Explorer</h3>
+                                <div class="product-description">For the brave souls seeking cosmic adventures</div>
+                                <div class="product-bottom">
+                                    <p class="product-price">$34.99</p>
+                                    <button class="wishlist-btn" data-product-id="3"><i class="far fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-card" data-product-id="4">
+                            <div class="product-image">
+                                <div class="product-image-inner">
+                                    <img src="images/tshirt4.jpg" alt="Planetary Voyage T-Shirt">
+                                </div>
+                                <div class="product-hover-overlay">
+                                    <a href="product.html?id=4" class="view-product-btn">VIEW PRODUCT</a>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-category">Cosmic T-Shirt</div>
+                                <h3 class="product-title">Planetary Voyage</h3>
+                                <div class="product-description">Travel through our solar system with this unique design</div>
+                                <div class="product-bottom">
+                                    <p class="product-price">$28.99</p>
+                                    <button class="wishlist-btn" data-product-id="4"><i class="far fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="collection-footer" data-scroll data-scroll-speed="1">
+                    <button class="cosmic-btn secondary-btn" id="allProductsBtn">
+                        <span class="btn-text">VIEW ALL PRODUCTS</span>
+                        <span class="btn-icon"><i class="fas fa-external-link-alt"></i></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="customize" class="customize-section" data-scroll-section>
+            <div class="customize-parallax" data-scroll data-scroll-speed="-2">
+                <div class="customize-bg-elements">
+                    <div class="floating-element element-1"></div>
+                    <div class="floating-element element-2"></div>
+                    <div class="floating-element element-3"></div>
+                </div>
+            </div>
+            
+            <div class="section-header light" data-scroll data-scroll-speed="1">
+                <div class="section-icon"><i class="fas fa-magic"></i></div>
+                <h2 class="section-title">Design Your Cosmic Identity</h2>
+                <div class="section-subtitle">Upload your design and we'll bring it to life</div>
+            </div>
+            
+            <div class="customize-container" data-scroll data-scroll-speed="1.5">
+                <div class="customize-content">
+                    <div class="customize-steps">
+                        <div class="customize-step">
+                            <div class="step-number">01</div>
+                            <div class="step-content">
+                                <h3>Choose Your Style</h3>
+                                <p>Select from our premium t-shirt styles and sizes</p>
+                            </div>
+                        </div>
+                        <div class="customize-step">
+                            <div class="step-number">02</div>
+                            <div class="step-content">
+                                <h3>Upload Your Design</h3>
+                                <p>Submit your artwork or choose from our templates</p>
+                            </div>
+                        </div>
+                        <div class="customize-step">
+                            <div class="step-number">03</div>
+                            <div class="step-content">
+                                <h3>We Create Your Vision</h3>
+                                <p>Our team brings your cosmic design to reality</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="customize-cta">
+                        <button class="cosmic-btn primary-btn" id="customizeBtn">
+                            <span class="btn-text">START DESIGNING NOW</span>
+                            <span class="btn-icon"><i class="fas fa-paint-brush"></i></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="customize-preview-container">
+                    <div class="customize-preview-wrapper" data-scroll data-scroll-speed="2">
+                        <div class="t-shirt-model">
+                            <div class="t-shirt-base">
+                                <img src="images/custom-tshirt.png" alt="Customizable T-Shirt" class="t-shirt-img">
+                            </div>
+                            <div class="design-area">
+                                <div class="design-placeholder">Your Design Here</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section" data-scroll-section>
+            <div class="about-container">
+                <div class="about-image-container" data-scroll data-scroll-speed="1">
+                    <div class="about-image-wrapper">
+                        <img src="images/about-img.jpg" alt="About COSMO" class="about-image">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+                <div class="about-content" data-scroll data-scroll-speed="1.5">
+                    <div class="section-header left-align">
+                        <h2 class="section-title">About COSMO</h2>
+                        <div class="section-subtitle">Our story among the stars</div>
+                    </div>
+                    <div class="about-text">
+                        <p>COSMO was born from a passion for astronomy and fashion. We create unique t-shirts that capture the beauty and mystery of the cosmos.</p>
+                        <p>Each design is crafted with precision and care, inspired by celestial bodies, space exploration, and the wonders of our universe.</p>
+                        <p>Our team of cosmic designers works tirelessly to bring you the highest quality products that make you feel connected to the vastness of space.</p>
+                    </div>
+                    <div class="about-values">
+                        <div class="value-item">
+                            <div class="value-icon"><i class="fas fa-star"></i></div>
+                            <h3>Quality</h3>
+                            <p>Premium materials and prints that last</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
+                            <h3>Innovation</h3>
+                            <p>Pushing boundaries with new designs</p>
+                        </div>
+                        <div class="value-item">
+                            <div class="value-icon"><i class="fas fa-globe"></i></div>
+                            <h3>Sustainability</h3>
+                            <p>Eco-friendly practices for our planet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact-section" data-scroll-section>
+            <div class="contact-bg-elements">
+                <div class="contact-planet"></div>
+                <div class="contact-stars"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-header">
+                    <div class="contact-icon"><i class="fas fa-paper-plane"></i></div>
+                    <h2 class="contact-title">Contact The Cosmos</h2>
+                    <div class="contact-divider"></div>
+                    <p class="contact-subtitle">Reach out to our stellar team</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-method">
+                        <div class="method-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="method-details">
+                            <h3>Email Us</h3>
+                            <p>cosmoapparelsoff@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="method-icon"><i class="fas fa-phone"></i></div>
+                        <div class="method-details">
+                            <h3>Call Us</h3>
+                            <p>8807946094</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                       
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <svg viewBox="0 0 200 50" class="logo-svg small">
+                    <text x="10" y="35" fill="url(#logo-gradient)">COSMO</text>
+                </svg>
+                <p>Wear the universe. Be the cosmos.</p>
+            </div>
+            <div class="footer-contact">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>880 794 6094</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>cosmoapparelsoff@gmail.com</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 COSMO T-Shirts. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="customizeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Customize Your Own Cosmic T-Shirt</h2>
+                <span class="close-btn">&times;</span>
+            </div>
+            <div class="modal-body">
+                <iframe src="https://docs.google.com/forms/d/e/YOUR_CUSTOMIZE_FORM_ID/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- All Products Modal -->
+    <div id="allProductsModal" class="modal">
+        <div class="modal-content products-modal">
+            <span class="close-btn">&times;</span>
+            <div class="modal-header">
+                <h2>Our Cosmic Collection</h2>
+                <p>Explore our complete universe of space-inspired t-shirts</p>
+            </div>
+            <div class="products-grid">
+                <!-- First 4 products (already shown in carousel) -->
+                <div class="product-tile" data-product-id="1">
+                    <div class="product-tile-image">
+                        <img src="images/tshirt1.jpg" alt="Galaxy Explorer T-Shirt">
+                        <div class="product-tile-actions">
+                            <a href="product.html?id=1" class="cosmic-btn small-btn">View Details</a>
+                            <button class="wishlist-btn small" data-product-id="1"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <h3>Galaxy Explorer</h3>
+                    <p class="product-tile-price">$29.99</p>
+                </div>
+                
+                <div class="product-tile" data-product-id="2">
+                    <div class="product-tile-image">
+                        <img src="images/tshirt2.jpg" alt="Nebula Dream T-Shirt">
+                        <div class="product-tile-actions">
+                            <a href="product.html?id=2" class="cosmic-btn small-btn">View Details</a>
+                            <button class="wishlist-btn small" data-product-id="2"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <h3>Nebula Dream</h3>
+                    <p class="product-tile-price">$32.99</p>
+                </div>
+                
+                <div class="product-tile" data-product-id="3">
+                    <div class="product-tile-image">
+                        <img src="images/tshirt3.jpg" alt="Space Explorer T-Shirt">
+                        <div class="product-tile-actions">
+                            <a href="product.html?id=3" class="cosmic-btn small-btn">View Details</a>
+                            <button class="wishlist-btn small" data-product-id="3"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <h3>Space Explorer</h3>
+                    <p class="product-tile-price">$34.99</p>
+                </div>
+                
+                <div class="product-tile" data-product-id="4">
+                    <div class="product-tile-image">
+                        <img src="images/tshirt4.jpg" alt="Planetary Voyage T-Shirt">
+                        <div class="product-tile-actions">
+                            <a href="product.html?id=4" class="cosmic-btn small-btn">View Details</a>
+                            <button class="wishlist-btn small" data-product-id="4"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <h3>Planetary Voyage</h3>
+                    <p class="product-tile-price">$28.99</p>
+                </div>
+                
+                <!-- Additional products -->
+                <div class="product-tile" data-product-id="5">
+                    <div class="product-tile-image">
+                        <img src="images/tshirt5.jpg" alt="Astral Drift T-Shirt">
+                        <div class="product-tile-actions">
+                            <a href="product.html?id=5" class="cosmic-btn small-btn">View Details</a>
+                            <button class="wishlist-btn small" data-product-id="5"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <h3>Astral Drift</h3>
+                    <p class="product-tile-price">$31.99</p>
+                </div>
+                
+                <div class="product-tile" data-product-id="6">
+                    <div class="product-tile-image">
+                        <img src="images/tshirt6.jpg" alt="Lunar Phase T-Shirt">
+                        <div class="product-tile-actions">
+                            <a href="product.html?id=6" class="cosmic-btn small-btn">View Details</a>
+                            <button class="wishlist-btn small" data-product-id="6"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <h3>Lunar Phase</h3>
+                    <p class="product-tile-price">$27.99</p>
+                </div>
+                
+                <div class="product-tile" data-product-id="7">
+                    <div class="product-tile-image">
+                        <img src="images/tshirt7.jpg" alt="Cosmic Ray T-Shirt">
+                        <div class="product-tile-actions">
+                            <a href="product.html?id=7" class="cosmic-btn small-btn">View Details</a>
+                            <button class="wishlist-btn small" data-product-id="7"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <h3>Cosmic Ray</h3>
+                    <p class="product-tile-price">$29.99</p>
+                </div>
+                
+                <div class="product-tile" data-product-id="8">
+                    <div class="product-tile-image">
+                        <img src="images/tshirt8.jpg" alt="Dark Matter T-Shirt">
+                        <div class="product-tile-actions">
+                            <a href="product.html?id=8" class="cosmic-btn small-btn">View Details</a>
+                            <button class="wishlist-btn small" data-product-id="8"><i class="far fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <h3>Dark Matter</h3>
+                    <p class="product-tile-price">$33.99</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wishlist Modal -->
+    <div id="wishlistModal" class="modal">
+        <div class="modal-content wishlist-modal">
+            <span class="close-btn">&times;</span>
+            <div class="modal-header">
+                <h2>Your Cosmic Wishlist</h2>
+                <p>Items you've saved for later</p>
+            </div>
+            <div class="wishlist-items">
+                <!-- Wishlist items will be dynamically added here via JavaScript -->
+                <div class="empty-wishlist">
+                    <i class="far fa-heart empty-icon"></i>
+                    <p>Your wishlist is empty</p>
+                    <p class="empty-subtitle">Explore our collection and add your favorite items</p>
+                    <button class="cosmic-btn primary-btn" id="exploreFromWishlist">
+                        <span class="btn-text">EXPLORE COLLECTION</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.1/dist/locomotive-scroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

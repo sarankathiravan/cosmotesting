@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - COSMO</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.1/dist/locomotive-scroll.min.css">
+</head>
+<body class="product-page" data-scroll-container>
+    <div class="loader">
+        <div class="loader-inner">
+            <h2>COSMO</h2>
+            <div class="loader-progress-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="cosmos-background">
+        <div class="stars-container"></div>
+        <div class="planets-container">
+            <div class="planet planet-1"></div>
+            <div class="planet planet-2"></div>
+            <div class="planet planet-3"></div>
+            <div class="comet"></div>
+        </div>
+        <div class="shooting-stars"></div>
+    </div>
+    
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <svg viewBox="0 0 200 50" class="logo-svg">
+                        <text x="10" y="35" fill="url(#logo-gradient)">COSMO</text>
+                        <defs>
+                            <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#7d42f4" />
+                                <stop offset="100%" stop-color="#e527b2" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </a>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#collection">Collection</a></li>
+                    <li><a href="#" id="wishlistBtn"><i class="fas fa-heart"></i> Wishlist <span class="wishlist-count">0</span></a></li>
+                </ul>
+            </nav>
+            <div class="mobile-nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="product-main">
+        <div class="product-portal">
+            <div class="portal-ring"></div>
+            <div class="portal-ring"></div>
+            <div class="portal-ring"></div>
+        </div>
+        
+        <div class="breadcrumbs">
+            <div class="container">
+                <a href="index.html">Home</a> <span class="separator">/</span> 
+                <a href="index.html#collection">Collection</a> <span class="separator">/</span> 
+                <span class="current" id="product-breadcrumb">Galaxy Explorer</span>
+            </div>
+        </div>
+
+        <section class="product-showcase">
+            <div class="container">
+                <div class="product-showcase-grid">
+                    <!-- Product Gallery -->
+                    <div class="product-gallery-card">
+                        <div class="gallery-container">
+                            <div class="main-gallery-image">
+                                <img src="images/tshirt1.jpg" alt="Product Image" id="main-product-image">
+                                <div class="image-overlay">
+                                    <div class="overlay-icon">
+                                        <i class="fas fa-search-plus"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="gallery-thumbnails">
+                                <div class="thumbnail active" data-img="images/tshirt1.jpg">
+                                    <img src="images/tshirt1.jpg" alt="Thumbnail 1">
+                                </div>
+                                <div class="thumbnail" data-img="images/tshirt1-alt1.jpg">
+                                    <img src="images/tshirt1-alt1.jpg" alt="Thumbnail 2">
+                                </div>
+                                <div class="thumbnail" data-img="images/tshirt1-alt2.jpg">
+                                    <img src="images/tshirt1-alt2.jpg" alt="Thumbnail 3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Info -->
+                    <div class="product-info-card">
+                        <div class="product-header">
+                            <div class="badge-container">
+                                <span class="product-badge" id="product-badge">New</span>
+                            </div>
+                            <h1 class="product-title" id="product-title">Galaxy Explorer</h1>
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-count">42 reviews</span>
+                            </div>
+                        </div>
+                        
+                        <div class="product-price-container">
+                            <div class="product-price" id="product-price">$29.99</div>
+                        </div>
+                        
+                        <div class="product-description" id="product-description">
+                            <p>Explore the depths of the Milky Way with this cosmic design that showcases the beauty of our galaxy. Made with high-quality materials for comfort and durability.</p>
+                        </div>
+                        
+                        <div class="product-features">
+                            <h3>Features</h3>
+                            <ul class="features-list">
+                                <li><i class="fas fa-check-circle"></i> 100% Organic Cotton</li>
+                                <li><i class="fas fa-check-circle"></i> Digital Cosmic Print</li>
+                                <li><i class="fas fa-check-circle"></i> Glow in the Dark Elements</li>
+                                <li><i class="fas fa-check-circle"></i> Reinforced Stitching</li>
+                                <li><i class="fas fa-check-circle"></i> Pre-shrunk Fabric</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="product-actions">
+                            <button class="cosmic-btn primary-btn" id="buyNowBtn" data-product-id="1">
+                                <span class="btn-text">BUY NOW</span>
+                                <span class="btn-icon"><i class="fas fa-rocket"></i></span>
+                            </button>
+                            <button class="wishlist-btn large" id="product-wishlist-btn" data-product-id="1">
+                                <i class="far fa-heart"></i>
+                                <span>Add to Wishlist</span>
+                            </button>
+                        </div>
+                        
+                        <div class="product-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-truck"></i>
+                                <span>Free shipping on orders over $50</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-sync-alt"></i>
+                                <span>30-day easy returns</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Quality guarantee</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="product-details">
+            <div class="container">
+                <div class="details-tabs">
+                    <div class="tabs-nav">
+                        <button class="tab-btn active" data-tab="description">Description</button>
+                        <button class="tab-btn" data-tab="specifications">Specifications</button>
+                        <button class="tab-btn" data-tab="sizing">Size Guide</button>
+                    </div>
+                    
+                    <div class="tabs-content">
+                        <div class="tab-content active" id="description-tab">
+                            <div class="content-grid">
+                                <div class="content-text">
+                                    <h2>About Galaxy Explorer</h2>
+                                    <p>Each Galaxy Explorer T-shirt features a unique cosmic design that captures the wonder and beauty of space. Our special printing technique ensures vibrant colors that won't fade even after multiple washes.</p>
+                                    
+                                    <p>Inspired by the vast beauty of our galaxy, this shirt combines comfort with stellar design. The quality fabric ensures all-day comfort while the glow-in-the-dark elements add a magical touch in low-light conditions.</p>
+                                    
+                                    <p>This versatile piece works great for casual wear, space enthusiasts, astronomy events, or simply making a statement with your cosmic style. Each purchase supports our sustainable manufacturing practices.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="specifications-tab">
+                            <div class="content-grid">
+                                <div class="content-text">
+                                    <h2>Material & Construction</h2>
+                                    <div class="specifications-list">
+                                        <div class="spec-item">
+                                            <div class="spec-label">Material</div>
+                                            <div class="spec-value">100% Organic Cotton</div>
+                                        </div>
+                                        <div class="spec-item">
+                                            <div class="spec-label">Design</div>
+                                            <div class="spec-value">Digital Print</div>
+                                        </div>
+                                        <div class="spec-item">
+                                            <div class="spec-label">Fit</div>
+                                            <div class="spec-value">Regular</div>
+                                        </div>
+                                        <div class="spec-item">
+                                            <div class="spec-label">Neck Type</div>
+                                            <div class="spec-value">Round Neck</div>
+                                        </div>
+                                        <div class="spec-item">
+                                            <div class="spec-label">Sleeve</div>
+                                            <div class="spec-value">Short Sleeve</div>
+                                        </div>
+                                        <div class="spec-item">
+                                            <div class="spec-label">Weight</div>
+                                            <div class="spec-value">180 GSM</div>
+                                        </div>
+                                        <div class="spec-item">
+                                            <div class="spec-label">Care</div>
+                                            <div class="spec-value">Machine Wash Cold</div>
+                                        </div>
+                                        <div class="spec-item">
+                                            <div class="spec-label">Origin</div>
+                                            <div class="spec-value">Made in Universe City</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <h3>Special Features</h3>
+                                    <p>Glow-in-the-dark elements that charge with light and illuminate in darkness. Special color-fast printing technique ensures the design stays vibrant even after multiple washes.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="sizing-tab">
+                            <div class="content-grid">
+                                <div class="content-text">
+                                    <h2>Size Guide</h2>
+                                    <p>To find your perfect fit, measure your chest at its widest point and reference our size chart below. If you're between sizes, we recommend going one size up for a more relaxed fit.</p>
+                                    
+                                    <div class="size-chart">
+                                        <table class="size-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Size</th>
+                                                    <th>Chest (inches)</th>
+                                                    <th>Length (inches)</th>
+                                                    <th>Sleeve (inches)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>S</td>
+                                                    <td>41 (104 CM)</td>
+                                                    <td>26 (65 CM)</td>
+                                                    <td>10 (25.5 CM)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>M</td>
+                                                    <td>43 (109 CM)</td>
+                                                    <td>27 (68.5 CM)</td>
+                                                    <td>10.25 (26 CM)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>L</td>
+                                                    <td>45 (114 CM)</td>
+                                                    <td>28 (71 CM)</td>
+                                                    <td>10.5 (26.5 CM)</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>XL</td>
+                                                    <td>47 (119 CM)</td>
+                                                    <td>29 (73.5 CM)</td>
+                                                    <td>10.45 (27 CM)</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                    <h3>Care Instructions</h3>
+                                    <div class="care-instructions">
+                                        <div class="care-item">
+                                            <div class="care-icon">
+                                                <i class="fas fa-tshirt"></i>
+                                            </div>
+                                            <div class="care-text">Machine wash cold</div>
+                                        </div>
+                                        <div class="care-item">
+                                            <div class="care-icon">
+                                                <i class="fas fa-times-circle"></i>
+                                            </div>
+                                            <div class="care-text">No bleach</div>
+                                        </div>
+                                        <div class="care-item">
+                                            <div class="care-icon">
+                                                <i class="fas fa-wind"></i>
+                                            </div>
+                                            <div class="care-text">Tumble dry low</div>
+                                        </div>
+                                        <div class="care-item">
+                                            <div class="care-icon">
+                                                <i class="fas fa-temperature-low"></i>
+                                            </div>
+                                            <div class="care-text">Iron on low heat</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="related-products">
+            <div class="container">
+                <div class="section-header center-align">
+                    <div class="section-title-container">
+                        <div class="floating-stars small">
+                            <div class="floating-star"></div>
+                            <div class="floating-star"></div>
+                        </div>
+                        <h2 class="section-title">Explore More Cosmic Designs</h2>
+                        <div class="floating-stars small">
+                            <div class="floating-star"></div>
+                            <div class="floating-star"></div>
+                        </div>
+                    </div>
+                    <p class="section-subtitle">Other galactic creations that match your style</p>
+                </div>
+                
+                <div class="related-grid">
+                    <!-- Related products will be dynamically added with JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <svg viewBox="0 0 200 50" class="logo-svg small">
+                    <text x="10" y="35" fill="url(#logo-gradient)">COSMO</text>
+                </svg>
+                <p>Wear the universe. Be the cosmos.</p>
+            </div>
+            <div class="footer-contact">
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>880 794 6094</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>cosmoapparelsoff@gmail.com</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 COSMO T-Shirts. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Image Zoom Modal -->
+    <div id="imageZoomModal" class="modal">
+        <div class="modal-content zoom-modal">
+            <span class="close-btn">&times;</span>
+            <div class="zoom-container">
+                <img src="" alt="Zoomed product image" id="zoomed-image">
+            </div>
+            <div class="zoom-controls">
+                <button class="zoom-nav prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="zoom-thumbnails"></div>
+                <button class="zoom-nav next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wishlist Modal -->
+    <div id="wishlistModal" class="modal">
+        <div class="modal-content wishlist-modal">
+            <span class="close-btn">&times;</span>
+            <div class="modal-header">
+                <h2>Your Cosmic Wishlist</h2>
+                <p>Items you've saved for later</p>
+            </div>
+            <div class="wishlist-items">
+                <!-- Wishlist items will be dynamically added here via JavaScript -->
+                <div class="empty-wishlist">
+                    <i class="far fa-heart empty-icon"></i>
+                    <p>Your wishlist is empty</p>
+                    <p class="empty-subtitle">Explore our collection and add your favorite items</p>
+                    <a href="index.html#collection" class="cosmic-btn primary-btn">
+                        <span class="btn-text">EXPLORE COLLECTION</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buy Now Modal -->
+    <div id="buyNowModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-header">
+                <h2>Complete Your Order</h2>
+            </div>
+            <div class="modal-body">
+                <iframe src="https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="notification-message">Item added to wishlist successfully!</div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
