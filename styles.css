@@ -383,7 +383,7 @@ body:hover .custom-cursor {
     position: absolute;
     width: 150px;
     height: 3px;
-    background: linear-gradient(to right, var(--accent-teal), rgba(255,255,255,0.1));
+    background: linear-gradient(to right, var(--), rgba(255,255,255,0.1));
     transform: rotate(-45deg);
     top: 20%;
     right: 30%;
@@ -1900,9 +1900,9 @@ footer {
     display: flex;
     align-items: center;
     gap: 5px;
-    color: var(--accent-teal);
+    color: white;
     font-weight: 500;
-    font-family: 'Orbitron', sans-serif;
+    font-family: 'roboto', sans-serif;
     font-size: 1.4rem;
     border-left: none;
     padding-left: 0;
