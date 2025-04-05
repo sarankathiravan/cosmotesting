@@ -1108,7 +1108,7 @@ function initWishlistButtons() {
             
             // Update text if it's the large button on product page
             if (btn.classList.contains('large') && btn.querySelector('span')) {
-                btn.querySelector('span').textContent = 'Remove from Wishlist';
+                btn.querySelector('span').textContent = ' Remove from Wishlist';
             }
         }
         
@@ -1214,7 +1214,7 @@ function updateWishlistButtonsState(productId, isActive) {
             
             // Update text if it's the large button on product page
             if (btn.classList.contains('large') && btn.querySelector('span')) {
-                btn.querySelector('span').textContent = 'Remove from Wishlist';
+                btn.querySelector('span').textContent = ' Remove from Wishlist';
             }
         } else {
             // Remove from wishlist - add depop class and use heartDepop animation
@@ -1233,7 +1233,7 @@ function updateWishlistButtonsState(productId, isActive) {
             
             // Update text if it's the large button on product page
             if (btn.classList.contains('large') && btn.querySelector('span')) {
-                btn.querySelector('span').textContent = 'Add to Wishlist';
+                btn.querySelector('span').textContent = ' Add to Wishlist';
             }
         }
     });
@@ -1266,32 +1266,32 @@ function renderWishlistItems() {
     // Products data (in a real implementation, this would be fetched from an API)
     const products = {
         '1': {
-            name: 'Galaxy Explorer',
+            name: 'STAY HIGH',
             price: '₹599',
             image: 'high.png'
         },
         '2': {
-            name: 'Celestial Voyager',
+            name: 'SHANK UNLEASHED', // Updated from "Celestial Voyager"
             price: '₹599',
             image: 'anime1.png'
         },
         '3': {
-            name: 'Astro Navigator',
+            name: 'THE CHIRON', // Updated from "Astro Navigator"
             price: '₹599',
             image: 'chiron.png'
         },
         '4': {
-            name: 'Nebula Horizon',
+            name: 'STRAIGHT OUTTA MARS', // Updated from "Nebula Horizon"
             price: '₹599',
             image: 'mars.png'
         },
         '5': {
-            name: 'Quantum Pulse',
+            name: 'SKULL LEGACY', // Updated from "Quantum Pulse"
             price: '₹599',
             image: 'onepiece.png'
         },
         '6': {
-            name: 'Orbital Dreams',
+            name: 'XOXO NIGHT VISION', // Updated from "Orbital Dreams"
             price: '₹599',
             image: 'xoxo.png'
         },
@@ -1473,7 +1473,12 @@ function initProductTabs() {
             // Show selected tab content
             const tabName = this.getAttribute('data-tab');
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.getElementById(`${tabName}-tab`).classList.add('active');
+            
+            // Check if the tab exists before trying to activate it
+            const targetTab = document.getElementById(`${tabName}-tab`);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
         });
     });
     
@@ -1485,17 +1490,26 @@ function initProductTabs() {
             
             // Activate sizing tab
             tabButtons.forEach(btn => btn.classList.remove('active'));
-            document.querySelector('[data-tab="sizing"]').classList.add('active');
+            const sizingTabBtn = document.querySelector('[data-tab="sizing"]');
+            if (sizingTabBtn) {
+                sizingTabBtn.classList.add('active');
+            }
             
             // Show sizing tab content
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.getElementById('sizing-tab').classList.add('active');
+            const sizingTab = document.getElementById('sizing-tab');
+            if (sizingTab) {
+                sizingTab.classList.add('active');
+            }
             
             // Scroll to the tab section
-            document.querySelector('.product-details-section').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            const detailsSection = document.querySelector('.product-details-section') || document.querySelector('.product-details');
+            if (detailsSection) {
+                detailsSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         });
     }
 }
@@ -1740,23 +1754,8 @@ function setupBuyNowButton() {
         buyNowBtn.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // Get product details to pass to the form
-            const productTitle = document.getElementById('product-title')?.textContent || '';
-            const productPrice = document.getElementById('product-price')?.textContent || '';
-            const productId = this.getAttribute('data-product-id') || 
-                              document.getElementById('product-wishlist-btn')?.getAttribute('data-product-id') || '1';
-            
-            // Google Forms URL - replace with your actual Google Form URL
-            const googleFormUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfD9JhzXQPZboXGO-MN5I7qQNEapQe4Em27HYLCkxIZwDY05Q/viewform';
-            
-            // Add query parameters to pre-fill the form
-            const formUrl = `${googleFormUrl}?usp=pp_url&entry.2005620554=${encodeURIComponent(productTitle)}&entry.1045781291=${encodeURIComponent(productPrice)}&entry.1065046570=${encodeURIComponent(productId)}`;
-            
-            // Open the form in a new tab
-            window.open(formUrl, '_blank');
-            
-            // Show success notification
-            showNotification('Redirecting to order form...', 'info');
+            // Open the Google Form in a new tab
+            window.open('https://forms.gle/xMvPd9M57gMwctG17', '_blank');
         });
     }
 }
@@ -1766,51 +1765,51 @@ function loadProductDetails(productId) {
     // For demo purposes, we'll use hardcoded data
     const products = {
         '1': {
-            name: 'Galaxy Explorer',
+            name: 'STAY HIGH',
             price: '₹599',
             badge: 'New',
             category: 'Cosmic T-Shirt',
-            description: 'Explore the depths of the Milky Way with this cosmic design that showcases the beauty of our galaxy. Made with high-quality materials for comfort and durability.',
+            description: 'Elevate the vibe. Float above the noise.',
             images: ['high.png', 'images/tshirt1-alt1.jpg', 'images/tshirt1-alt2.jpg']
         },
         '2': {
-            name: 'Celestial Voyager',
+            name: 'SHANK UNLEASHED',
             price: '₹599',
             badge: 'New',
             category: 'Cosmic T-Shirt',
-            description: 'Journey through nebulas with our signature cosmic design. The Celestial Voyager T-shirt showcases the colorful beauty of interstellar clouds where stars are born.',
+            description: 'Power Ignites in Silence. Legends Strike Once.',
             images: ['anime1.png', 'images/tshirt2-alt1.jpg', 'images/tshirt2-alt2.jpg']
         },
         '3': {
-            name: 'Astro Navigator',
+            name: 'THE CHIRON',
             price: '₹599',
             badge: 'New',
             category: 'Cosmic T-Shirt',
-            description: 'Find your path among the stars with this stellar design. This design captures the spirit of exploration with bold graphics and comfortable fit.',
+            description: 'Speed Monarch',
             images: ['chiron.png', 'images/tshirt3-alt1.jpg', 'images/tshirt3-alt2.jpg']
         },
         '4': {
-            name: 'Nebula Horizon',
+            name: 'STRAIGHT OUTTA MARS',
             price: '₹599',
             badge: 'New',
             category: 'Cosmic T-Shirt',
-            description: 'Gaze into infinite space with our cosmic horizon design featuring vibrant colors and detailed illustrations.',
+            description: 'Where legends don\'t just walk, they orbit.',
             images: ['mars.png', 'images/tshirt4-alt1.jpg', 'images/tshirt4-alt2.jpg']
         },
         '5': {
-            name: 'Quantum Pulse',
+            name: 'SKULL LEGACY',
             price: '₹599',
             badge: 'New',
             category: 'Cosmic T-Shirt',
-            description: 'Vibrant cosmic energy patterns that resonate with your style on comfortable fabric.',
+            description: 'SET SAIL. RAISE HELL. NEVER BACK DOWN',
             images: ['onepiece.png', 'images/tshirt5-alt1.jpg', 'images/tshirt5-alt2.jpg']
         },
         '6': {
-            name: 'Orbital Dreams',
+            name: 'XOXO NIGHT VISION',
             price: '₹599',
             badge: 'New',
             category: 'Cosmic T-Shirt',
-            description: 'Orbit the realm of dreams with this cosmic design showcasing the different phases of celestial beauty in striking detail on quality fabric.',
+            description: 'DARK VIBES. LOUD LOVE. NO APOLOGIES',
             images: ['xoxo.png', 'images/tshirt6-alt1.jpg', 'images/tshirt6-alt2.jpg']
         },
         '7': {
@@ -1851,7 +1850,17 @@ function loadProductDetails(productId) {
         const buyNowBtn = document.getElementById('buyNowBtn');
         const mainImage = document.getElementById('main-product-image');
         
-        if (titleElement) titleElement.textContent = product.name;
+        if (titleElement) {
+            titleElement.textContent = product.name;
+            
+            // Add white-title class for products 1-6
+            if (productId >= 1 && productId <= 6) {
+                titleElement.classList.add('white-title');
+            } else {
+                titleElement.classList.remove('white-title');
+            }
+        }
+        
         if (priceElement) priceElement.textContent = product.price;
         if (badgeElement) badgeElement.textContent = product.badge;
         if (descriptionElement) descriptionElement.innerHTML = `<p>${product.description}</p>`;
@@ -1900,55 +1909,55 @@ function loadRelatedProducts(currentProductId) {
     // Clear existing products
     relatedGrid.innerHTML = '';
     
-    // Product database - you can expand this as needed
+    // Product database - updated with correct names and image paths
     const allProducts = [
         {
             id: '1',
-            name: 'Galaxy Explorer',
+            name: 'STAY HIGH',
             price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'high.png',
-            description: 'Explore the depths of the Milky Way with this cosmic design'
+            image: 'high.png', // Ensure this image exists
+            description: 'Elevate the vibe. Float above the noise.'
         },
         {
             id: '2',
-            name: 'Celestial Voyager',
+            name: 'SHANK UNLEASHED', // Corrected from "Celestial Voyager"
             price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'anime1.png',
-            description: 'Journey through nebulas with our signature cosmic design'
+            image: 'anime1.png', // Ensure this image exists
+            description: 'Power Ignites in Silence. Legends Strike Once.'
         },
         {
             id: '3',
-            name: 'Astro Navigator',
+            name: 'THE CHIRON', // Corrected from "Astro Navigator"
             price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'chiron.png',
-            description: 'Find your path among the stars with this stellar design'
+            image: 'chiron.png', // Ensure this image exists
+            description: 'Speed Monarch'
         },
         {
             id: '4',
-            name: 'Nebula Horizon',
+            name: 'STRAIGHT OUTTA MARS', // Corrected from "Nebula Horizon"
             price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'mars.png',
-            description: 'Gaze into infinite space with our cosmic horizon design'
+            image: 'mars.png', // Ensure this image exists
+            description: 'Where legends don\'t just walk, they orbit.'
         },
         {
             id: '5',
-            name: 'Quantum Pulse',
+            name: 'SKULL LEGACY', // Corrected from "Quantum Pulse"
             price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'onepiece.png',
-            description: 'Vibrant cosmic energy patterns that resonate with your style'
+            image: 'onepiece.png', // Ensure this image exists
+            description: 'SET SAIL. RAISE HELL. NEVER BACK DOWN'
         },
         {
             id: '6',
-            name: 'Orbital Dreams',
+            name: 'XOXO NIGHT VISION', // Corrected from "Orbital Dreams"
             price: '₹599',
             category: 'Cosmic T-Shirt',
-            image: 'xoxo.png',
-            description: 'Orbit the realm of dreams with this cosmic design'
+            image: 'xoxo.png', // Ensure this image exists
+            description: 'DARK VIBES. LOUD LOVE. NO APOLOGIES'
         },
         {
             id: '7',
@@ -1992,7 +2001,7 @@ function loadRelatedProducts(currentProductId) {
             </div>
             <div class="product-info">
                 <div class="product-category">${product.category}</div>
-                <h3 class="product-title">${product.name}</h3>
+                <h3 class="product-title white-title">${product.name}</h3>
                 <div class="product-description">${product.description}</div>
                 <div class="product-bottom">
                     <p class="product-price">${product.price}</p>
@@ -2113,7 +2122,7 @@ function updateWishlistDropdown() {
 function getProductInfo(productId) {
     // Sample product data - replace with actual product data retrieval
     const products = {
-        '1': { name: 'Galaxy Explorer', price: '₹599', image: 'high.png' },
+        '1': { name: 'STAY HIGH', price: '₹599', image: 'high.png' },
         '2': { name: 'Celestial Voyager', price: '₹599', image: 'anime1.png' },
         '3': { name: 'Astro Navigator', price: '₹599', image: 'chiron.png' },
         '4': { name: 'Nebula Horizon', price: '₹599', image: 'mars.png' },

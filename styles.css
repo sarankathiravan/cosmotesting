@@ -512,6 +512,7 @@ nav {
     letter-spacing: 0.1rem;
     position: relative;
     padding: 0.5rem 0;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .nav-links a::after {
@@ -1203,7 +1204,7 @@ section {
 .product-title {
     font-size: 2.2rem;
     margin-bottom: 1.5rem;
-    color: var(--text-bright);
+    color: white; /* Changed from var(--text-bright) to white */
 }
 
 .product-description {
@@ -2519,7 +2520,7 @@ footer {
     color: var(--text-medium);
 }
 
-/* Wishlist Button */
+/* Wishlist Button - Remove gradient hover effect */
 .wishlist-btn {
     position: relative;
     display: flex;
@@ -2535,18 +2536,9 @@ footer {
     z-index: 1;
 }
 
+/* Remove the gradient background that appears on hover */
 .wishlist-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--gradient-primary);
-    border-radius: 50%;
-    transform: scale(0);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: -1;
+    display: none; /* This removes the gradient entirely */
 }
 
 .wishlist-btn i {
@@ -2558,11 +2550,12 @@ footer {
 
 .wishlist-btn:hover {
     transform: translateY(-3px);
-    color: var(--text-bright);
+    color: var(--text-bright); /* Keep the text color change on hover */
 }
 
+/* Remove hover gradient effect reference */
 .wishlist-btn:hover::before {
-    transform: scale(1);
+    transform: none;
 }
 
 .wishlist-btn.active i {
@@ -2890,7 +2883,7 @@ footer {
 .product-tile h3 {
     padding: 1.5rem 1.5rem 0.8rem;
     font-size: 1.8rem;
-    color: var(--text-bright);
+    color: white; /* Changed from var(--text-bright) to white */
     transition: color 0.3s ease;
 }
 
@@ -3571,7 +3564,7 @@ footer {
     align-items: center;
     margin-bottom: 1.2rem;
     font-size: 1.6rem;
-    color: var(--text-light);
+    color: white; /* Changed from var(--text-light) to white */
     font-weight: 500;
 }
 
@@ -3580,7 +3573,7 @@ footer {
 }
 
 .features-list li i {
-    color: var(--accent-color);
+    color: var(--accent-color); /* Keep the check icon color */
     margin-right: 1.5rem;
     font-size: 1.8rem;
     display: flex;
@@ -4517,7 +4510,7 @@ footer {
 .related-grid .product-title {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--text-bright);
+    color: white; /* Changed from var(--text-bright) to white */
     margin-bottom: 1rem;
 }
 
@@ -4719,4 +4712,141 @@ footer {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1.5rem;
     margin-bottom: 3rem;
+}
+
+/* Target specific product titles in index page */
+.product-card[data-product-id="1"] .product-title,
+.product-card[data-product-id="2"] .product-title,
+.product-card[data-product-id="3"] .product-title,
+.product-card[data-product-id="4"] .product-title,
+.product-card[data-product-id="5"] .product-title,
+.product-card[data-product-id="6"] .product-title,
+.product-tile[data-product-id="1"] h3,
+.product-tile[data-product-id="2"] h3,
+.product-tile[data-product-id="3"] h3,
+.product-tile[data-product-id="4"] h3,
+.product-tile[data-product-id="5"] h3,
+.product-tile[data-product-id="6"] h3 {
+    color: white; /* Set color to white */
+    font-weight: 700; /* Make it bold for better visibility */
+}
+
+/* White product titles for specific products */
+.product-title.white-title {
+    background: none !important; /* Remove gradient background */
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    color: white !important; /* Force white color */
+}
+
+/* Make related product titles white */
+.related-grid .product-title,
+.related-grid .product-title.white-title {
+    color: white !important;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+}
+
+/* Google Drive link in products modal */
+.drive-link-container {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.drive-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+
+.drive-link:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.drive-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 1rem;
+}
+
+.drive-link span {
+    color: white;
+    font-size: 1.6rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+}
+
+/* About Section - Updated for mobile responsiveness */
+.about-image-wrapper {
+    position: relative;
+    height: 500px;
+    width: 100%;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.about-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Adjust for tablets */
+@media (max-width: 992px) {
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    
+    .about-image-container {
+        order: 2;
+    }
+    
+    .about-image-wrapper {
+        height: 400px; /* Slightly reduce height on tablets */
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}
+
+/* Adjust for mobile phones */
+@media (max-width: 576px) {
+    .about-image-wrapper {
+        height: 300px; /* Further reduce height on mobile */
+    }
+    
+    .about-image {
+        object-position: center; /* Ensure image is centered */
+    }
+    
+    /* Ensure the image doesn't get cropped awkwardly */
+    .about-section {
+        padding: 8rem 1.5rem;
+    }
+    
+    /* Make values stack properly on mobile */
+    .about-values {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .value-item {
+        padding: 0 1rem;
+    }
+}
+
+/* Change wishlist button font on product page */
+.wishlist-btn.large span {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
 }
